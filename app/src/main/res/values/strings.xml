@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FoodOrderingApp-Android-Kotlin</string>
+
+    <string name="list_basket_item">%1$s item</string>
+    <string name="basket_item">%1$d adet</string>
+
+</resources>

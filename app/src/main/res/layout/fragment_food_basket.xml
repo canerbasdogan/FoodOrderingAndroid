@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="basketTotal"
+            type="String" />
+
+        <variable
+            name="foodBasketFragment"
+            type="com.ahmetcanerbasdogan.foodorderingandroid.ui.food_basket_fragment.FoodBasketFragment" />
+
+        <variable
+            name="foodBasketAdapter"
+            type="com.ahmetcanerbasdogan.foodorderingandroid.ui.food_basket_fragment.FoodBasketAdapter" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.food_basket_fragment.FoodBasketFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/basketRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:adapter="@{foodBasketAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/tvTotal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text='@{"Toplam: " + basketTotal + " ₺"}'
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/approveBasket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Toplam: 0 ₺" />
+
+        <Button
+            android:id="@+id/buttonClearBasket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> foodBasketFragment.buttonClearBasket()}"
+            android:text="SEPETİ TEMİZLE"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:backgroundTint="#FF0000"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </Button>
+
+        <Button
+            android:id="@+id/approveBasket"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="@{() -> foodBasketFragment.buttonApproveOrder()}"
+            android:text="SEPETİ ONAYLA"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:backgroundTint="#25B138"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonClearBasket"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

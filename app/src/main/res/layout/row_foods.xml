@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="foodData"
+            type="com.ahmetcanerbasdogan.foodorderingandroid.data.entity.Foods" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/foodRowLinearLayot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <ImageView
+                    android:id="@+id/ivListImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/tvListName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@{foodData.foodName}"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/ivListImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Yemek Adı" />
+
+                <TextView
+                    android:id="@+id/basketFoodUnitPriceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:text='@{foodData.foodPrice + " ₺"}'
+                    android:textColor="#FF0000"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivListImage"
+                    tools:text="Fiyatı" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

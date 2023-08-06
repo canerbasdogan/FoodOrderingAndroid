@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="foodData" type="com.ahmetcanerbasdogan.foodorderingandroid.data.entity.Foods" />
+        <variable name="quantityOfFood" type="String" />
+        <variable name="totalPrice" type="String" />
+        <variable name="foodDetailsFragment" type="com.ahmetcanerbasdogan.foodorderingandroid.ui.food_detail_fragment.FoodDetailsFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.food_detail_fragment.FoodDetailsFragment">
+
+        <ImageButton
+            android:id="@+id/backPressInFoodDetailFragment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:onClick="@{() -> foodDetailsFragment.backPressButton()}"
+
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageButton>
+
+        <TextView
+            android:id="@+id/detailFoodTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Ürün Detayı"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/addFoodToFavorite"
+            app:layout_constraintStart_toEndOf="@+id/backPressInFoodDetailFragment"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/addFoodToFavorite"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageButton>
+
+        <ImageView
+            android:id="@+id/ivDetailsImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_launcher_background" />
+
+        <ImageView
+            android:id="@+id/buttonDecrease"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="32dp"
+            android:foregroundGravity="center"
+            android:onClick="@{() -> foodDetailsFragment.buttonDecrease(editTextQuantity.getText().toString())}"
+            android:paddingStart="10dp"
+            android:src="@drawable/ic_minus_food_detail"
+            android:textSize="34sp"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_minuss"
+            app:iconGravity="textEnd"
+            app:iconSize="20sp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailsPrice" />
+
+        <EditText
+            android:id="@+id/editTextQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:background="@null"
+            android:gravity="center"
+            android:inputType="number"
+            android:onTextChanged="@{() -> foodDetailsFragment.checkQuantity(editTextQuantity.getText().toString(), foodData.foodPrice)}"
+            android:text='@{quantityOfFood}'
+            android:textColor="#031BEA"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/buttonIncrease"
+            app:layout_constraintStart_toEndOf="@+id/buttonDecrease"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailsPrice"
+            tools:text="1" />
+
+        <ImageView
+            android:id="@+id/buttonIncrease"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="100dp"
+            android:foregroundGravity="center"
+            android:onClick="@{() -> foodDetailsFragment.buttonIncrease(editTextQuantity.getText().toString())}"
+            android:paddingStart="10dp"
+            android:src="@drawable/ic_add_food_detail"
+            android:textSize="34sp"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_plus"
+            app:iconGravity="textEnd"
+            app:iconSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailsPrice" />
+
+        <TextView
+            android:id="@+id/tvDetailsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@{foodData.foodName}"
+            android:textColor="#007BFF"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivDetailsImage"
+            tools:text="Yemek Adı" />
+
+        <TextView
+            android:id="@+id/tvDetailsPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text='@{foodData.foodPrice + " ₺"}'
+            android:textColor="#FF0000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailsName"
+            tools:text="Fiyatı" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:backgroundTint="#FDA205"
+            android:onClick="@{() -> foodDetailsFragment.buttonAddToCart(foodData.foodName, foodData.foodImageUrl, foodData.foodPrice, Integer.valueOf(editTextQuantity.getText().toString()))}"
+            android:text="SEPETE EKLE"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </Button>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text='@{"Toplam = " + totalPrice + " ₺"}'
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Toplam = 18 ₺">
+
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
